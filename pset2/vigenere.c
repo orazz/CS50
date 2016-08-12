@@ -1,3 +1,8 @@
+//
+//  Created by Atakishiyev Orazdurdy on 8/11/16.
+//  Copyright © 2016. All rights reserved.
+//
+
 #include <cs50.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,15 +12,15 @@
 int main(int argc, string argv[])
 {
     int i = 0, j = 0, add = 0;
-    
+
     if (argc < 2 || argc > 2)
     {
-        printf("print the key next time \n"); 
+        printf("print the key next time \n");
         return 1;
     }
-    
+
     string key = argv[1];
-    
+
     for (i = 0; i < strlen(key); i++)
     {
         if (!isalpha(key[i]))
@@ -24,12 +29,12 @@ int main(int argc, string argv[])
             return 1;
         }
     }
-    
+
     string text = GetString();
     int len = strlen(text);
     int keylen = strlen(key);
     char cipher[len];
-    
+
     for (i = 0; i < len; i++)
     {
         if (isalpha(text[i]))
@@ -39,12 +44,12 @@ int main(int argc, string argv[])
             if (islower(key[j%keylen]))
                 add = (int)key[j%keylen] - 'a';         // determining value if key has lowercase character
             j++;
-                
+
             if(isupper(text[i]))
                 cipher[i] = (int)'A' + ((int)text[i] - (int)'A' + add)%26;
             else
                 cipher[i] = (int)'a' + ((int)text[i] - (int)'a' + add)%26;
-            
+
         }else
             cipher[i] = text[i];
     }
@@ -54,5 +59,5 @@ int main(int argc, string argv[])
     }
     printf("\n");
     return 0;
-  
+
 }
